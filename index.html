@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HuseynTech - Ən Yeni Texnologiya Xəbərləri</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-dark: #0a0e27;
+            --secondary-dark: #1a1f3a;
+            --accent-cyan: #00d9ff;
+            --accent-purple: #a855f7;
+            --accent-orange: #ff6b35;
+            --text-primary: #ffffff;
+            --text-secondary: #b0b8d4;
+            --border-color: #2d334a;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--primary-dark) 0%, #0f1429 100%);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animated background effect */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(168, 85, 247, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(0, 217, 255, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* Header */
+        header {
+            background: rgba(10, 14, 39, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 1.5rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            animation: slideDown 0.6s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        nav {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: linear-gradient(90deg, var(--accent-cyan), var(--accent-purple));
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--accent-cyan);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .search-box {
+            background: var(--secondary-dark);
+            border: 1px solid var(--border-color);
+            padding: 0.6rem 1rem;
+            border-radius: 50px;
+            color: var(--text-primary);
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            width: 200px;
+        }
+
+        .search-box:focus {
+            outline: none;
+            border-color: var(--accent-cyan);
+            box-shadow: 0 0 20px rgba(0, 217, 255, 0.3);
+            width: 250px;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-bottom: 4rem;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+            background: linear-gradient(135deg, var(--accent-cyan) 0%, var(--accent-purple) 50%, var(--accent-orange) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            max-width: 600px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+            color: var(--primary-dark);
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(0, 217, 255, 0.2);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 217, 255, 0.4);
+        }
+
+        /* Featured Article */
+        .featured {
+            background: linear-gradient(135deg, rgba(26, 31, 58, 0.8) 0%, rgba(42, 47, 74, 0.8) 100%);
+            border: 1px solid var(--border-color);
+            border-radius: 15px;
+            overflow: hidden;
+            margin-bottom: 4rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            padding: 2.5rem;
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+            backdrop-filter: blur(10px);
+        }
+
+        .featured-content h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+            color: var(--accent-cyan);
+            font-weight: 800;
+        }
+
+        .featured-content p {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .featured-meta {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .featured-image {
+            background: linear-gradient(135deg, var(--accent-purple) 0%, var(--accent-cyan) 100%);
+            border-radius: 10px;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .featured-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        /* Category Tags */
+        .categories {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .category-btn {
+            padding: 0.7rem 1.5rem;
+            border: 1px solid var(--border-color);
+            background: transparent;
+            color: var(--text-secondary);
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .category-btn:hover,
+        .category-btn.active {
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+            color: var(--primary-dark);
+            border-color: var(--accent-cyan);
+        }
+
+        /* News Grid */
+        .news-section h3 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: var(--text-primary);
+            font-weight: 800;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .news-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-cyan), var(--accent-purple));
+            border-radius: 2px;
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .news-card {
+            background: linear-gradient(135deg, rgba(26, 31, 58, 0.6) 0%, rgba(42, 47, 74, 0.6) 100%);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            animation: fadeInUp 0.6s ease-out forwards;
+            backdrop-filter: blur(10px);
+        }
+
+        .news-card:nth-child(1) { animation-delay: 0.5s; }
+        .news-card:nth-child(2) { animation-delay: 0.6s; }
+        .news-card:nth-child(3) { animation-delay: 0.7s; }
+        .news-card:nth-child(4) { animation-delay: 0.8s; }
+        .news-card:nth-child(5) { animation-delay: 0.9s; }
+        .news-card:nth-child(6) { animation-delay: 1s; }
+
+        .news-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-cyan);
+            box-shadow: 0 20px 50px rgba(0, 217, 255, 0.2);
+        }
+
+        .card-image {
+            width: 100%;
+            height: 180px;
+            background: linear-gradient(135deg, var(--accent-orange) 0%, var(--accent-purple) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
+            animation: shine 3s infinite;
+        }
+
+        .card-content {
+            padding: 1.5rem;
+        }
+
+        .card-category {
+            display: inline-block;
+            color: var(--accent-cyan);
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+        }
+
+        .card-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+            color: var(--text-primary);
+            line-height: 1.4;
+            transition: color 0.3s ease;
+        }
+
+        .news-card:hover .card-title {
+            color: var(--accent-cyan);
+        }
+
+        .card-description {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.2rem;
+            line-height: 1.6;
+        }
+
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            border-top: 1px solid var(--border-color);
+            padding-top: 1rem;
+        }
+
+        .read-more {
+            color: var(--accent-cyan);
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .news-card:hover .read-more {
+            color: var(--accent-purple);
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(10, 14, 39, 0.95);
+            border-top: 1px solid var(--border-color);
+            padding: 3rem 2rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            color: var(--accent-cyan);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.8;
+        }
+
+        .footer-section a {
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--accent-cyan);
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .featured {
+                grid-template-columns: 1fr;
+                padding: 1.5rem;
+            }
+
+            .featured-image {
+                height: 250px;
+            }
+
+            nav {
+                gap: 1rem;
+            }
+
+            nav a {
+                display: none;
+            }
+
+            .search-box {
+                width: 150px;
+            }
+
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .header-container {
+                padding: 0 1rem;
+            }
+
+            .categories {
+                gap: 0.5rem;
+            }
+
+            .category-btn {
+                padding: 0.5rem 1rem;
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo">⚡ HuseynTech</div>
+            <nav>
+                <a href="#home">Əsas Səhifə</a>
+                <a href="#latest">Ən Yeni</a>
+                <a href="#categories">Kateqoriyalar</a>
+                <a href="#about">Haqqında</a>
+            </nav>
+            <input type="text" class="search-box" placeholder="Xəbər axtar...">
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Hero Section -->
+        <section class="hero">
+            <h1>Texnologiyada Öndə Olun</h1>
+            <p>Texnologiya dünyasının ən son tərəqqilərini, inovativ ideyalarını və tendensiyalarını bilin.</p>
+            <button class="cta-button">Bülletinə Abunə Olun</button>
+        </section>
+
+        <!-- Featured Article -->
+        <section class="featured">
+            <div class="featured-content">
+                <h2>Süni Intellekt Devriminin Yeni Nəsli</h2>
+                <div class="featured-meta">
+                    <span>🕐 2 saat əvvəl</span>
+                    <span>📖 8 dəq oxu</span>
+                    <span>Müəllif: Sarah Chen</span>
+                </div>
+                <p>Süni intellektdə ən son irəliləmələrin sənaye sahələrini necə çevirdiyi və texnologiyamızın gələcəyini necə yenidən şəkilləndirildiyi haqqında bilin. Səhiyyədən maliyyəyə qədər, AI sənaye sahələrində tək olmayan innovasiyaları sürücü qüvvədir.</p>
+                <button class="cta-button">Tam Hekayəni Oxu</button>
+            </div>
+            <div class="featured-image">🤖</div>
+        </section>
+
+        <!-- Categories -->
+        <div class="categories">
+            <button class="category-btn active">Bütün Xəbərlər</button>
+            <button class="category-btn">Süni İntellekt</button>
+            <button class="category-btn">Kripto</button>
+            <button class="category-btn">Mobil</button>
+            <button class="category-btn">Təhlükəsizlik</button>
+            <button class="category-btn">Gadjetlər</button>
+        </div>
+
+        <!-- Latest News -->
+        <section class="news-section">
+            <h3>Ən Son Yeniləşmələr</h3>
+            <div class="news-grid">
+                <article class="news-card">
+                    <div class="card-image">🚀</div>
+                    <div class="card-content">
+                        <span class="card-category">Kosmos Texnologiyası</span>
+                        <h4 class="card-title">SpaceX İnqilab Yaradan Peyk Şəbəkəsini Buraxır</h4>
+                        <p class="card-description">SpaceX minlərlə peyk yerləşdirərək qlobal İnternet əhatəsi üçün bir atılım gerçəkləşdirir.</p>
+                        <div class="card-footer">
+                            <span>30 dəq əvvəl</span>
+                            <a href="#" class="read-more">Daha çox oxu →</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="news-card">
+                    <div class="card-image">💻</div>
+                    <div class="card-content">
+                        <span class="card-category">Aparat Təminatı</span>
+                        <h4 class="card-title">Yeni Kvant Prosessoru Sürət Rekordunu Pozur</h4>
+                        <p class="card-description">Alimlər 1000 kubitli kvant prosessoru hazırlayaraq hesablama gücünün nüfuzlu artımını vəd edir.</p>
+                        <div class="card-footer">
+                            <span>1 saat əvvəl</span>
+                            <a href="#" class="read-more">Daha çox oxu →</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="news-card">
+                    <div class="card-image">🔐</div>
+                    <div class="card-content">
+                        <span class="card-category">Təhlükəsizlik</span>
+                        <h4 class="card-title">Böyük Siber Təhlükəsizlik Zəifi Kəşf Olunur</h4>
+                        <p class="card-description">Texnologiya şirkətləri milyonları təsiretməsi olan kritik zəifi kəşf edildikdən sonra təcili yeniləmə buraxır.</p>
+                        <div class="card-footer">
+                            <span>2 saat əvvəl</span>
+                            <a href="#" class="read-more">Daha çox oxu →</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="news-card">
+                    <div class="card-image">📱</div>
+                    <div class="card-content">
+                        <span class="card-category">Mobil</span>
+                        <h4 class="card-title">Açılan Telefonlar Əsas Bazara Daxil Olur</h4>
+                        <p class="card-description">Samsung və Apple inovatif açılan dizaynları təqdim etməklə smartfon texnologiyasında böyük dəyişikliyi bildirirlər.</p>
+                        <div class="card-footer">
+                            <span>3 saat əvvəl</span>
+                            <a href="#" class="read-more">Daha çox oxu →</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="news-card">
+                    <div class="card-image">🧠</div>
+                    <div class="card-content">
+                        <span class="card-category">Süni İntellekt</span>
+                        <h4 class="card-title">Beyin-Kompüter İnterfeysi Sahibə Çatır</h4>
+                        <p class="card-description">Tədqiqatçılar birbaşa neyral-rəqəmsal rabitəni uğurla nümayiş etdirərək əlillik yardımçılığı üçün qapılar açırlar.</p>
+                        <div class="card-footer">
+                            <span>4 saat əvvəl</span>
+                            <a href="#" class="read-more">Daha çox oxu →</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="news-card">
+                    <div class="card-image">🌍</div>
+                    <div class="card-content">
+                        <span class="card-category">Yaşıl Texnologiya</span>
+                        <h4 class="card-title">Günəş Texnologiyası Effektivliyi 50% Çatır</h4>
+                        <p class="card-description">Fotovoltaik hüceyrələrdə keçid gələcək üçün daha səmərəli yenilənən enerji istehsalını vəd edir.</p>
+                        <div class="card-footer">
+                            <span>5 saat əvvəl</span>
+                            <a href="#" class="read-more">Daha çox oxu →</a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>HuseynTech Haqqında</h4>
+                <p>Rəqəmsal dünyanı şəkil verən ən son texnologiya xəbəri, fikirləri və tendensiyaları üçün sizin son seçimdir.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Sürətli Bağlantılar</h4>
+                <p><a href="#">Əsas Səhifə</a></p>
+                <p><a href="#">Ən Yeni Xəbərlər</a></p>
+                <p><a href="#">Kateqoriyalar</a></p>
+                <p><a href="#">Əlaqə</a></p>
+            </div>
+            <div class="footer-section">
+                <h4>Bizi İzləyin</h4>
+                <p><a href="#">Twitter</a></p>
+                <p><a href="#">LinkedIn</a></p>
+                <p><a href="#">Facebook</a></p>
+                <p><a href="#">Bülletin</a></p>
+            </div>
+            <div class="footer-section">
+                <h4>Əlaqə</h4>
+                <p>Instagram: @huseyntech</p>
+                <p>Telefon: +1 (555) 123-4567</p>
+                <p>Ünvan: Texnologiya Mərkəzi, Silikon Vadisi</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 HuseynTech. Bütün hüquqlar qorunur. | Məxfilik Siyasəti | Xidmət Şərtləri</p>
+        </div>
+    </footer>
+</body>
+</html>
